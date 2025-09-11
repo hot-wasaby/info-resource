@@ -27,4 +27,20 @@ export class ResourcesService {
     }
     return resource;
   }
+
+  search(name?: string, minPrice?: number, maxPrice?: number): ResourceEntity[] {
+    return this.resources.filter((resource) => {
+      let ok = true;
+      if (name) {
+        ok = ok && resource.name.toLowerCase().includes(name.toLowerCase());
+      }
+      if (minPrice !== undefined) {
+        ok = ok && resource.price >= minPrice;
+      }
+      if (maxPrice !== undefined) {
+        ok = ok && resource.price <= maxPrice;
+      }
+      return ok;
+    });
+  }
 }

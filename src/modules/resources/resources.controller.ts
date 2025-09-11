@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ResourcesService } from './resources.service';
 import { ResourceEntity } from '../../entities/resource.entity';
 
@@ -14,5 +14,18 @@ export class ResourcesController {
   @Get('details/:id')
   getResourceById(@Param('id') id: string): ResourceEntity {
     return this.resourcesService.findOneById(Number(id));
+  }
+
+  @Get('search')
+  searchResources(
+    @Query('name') name?: string,
+    @Query('minPrice') minPrice?: string,
+    @Query('maxPrice') maxPrice?: string,
+  ): ResourceEntity[] {
+    return this.resourcesService.search(
+      name,
+      minPrice ? Number(minPrice) : undefined,
+      maxPrice ? Number(maxPrice) : undefined,
+    );
   }
 }
