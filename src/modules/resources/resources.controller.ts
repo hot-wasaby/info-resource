@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { ResourcesService } from './resources.service';
 import { ResourceEntity } from '../../entities/resource.entity';
 
@@ -9,5 +9,10 @@ export class ResourcesController {
   @Get('list')
   getAllResources(): ResourceEntity[] {
     return this.resourcesService.findAll();
+  }
+
+  @Get('details/:id')
+  getResourceById(@Param('id') id: string): ResourceEntity {
+    return this.resourcesService.findOneById(Number(id));
   }
 }

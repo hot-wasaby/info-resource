@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { ResourceEntity } from '../../entities/resource.entity';
 
 @Injectable()
@@ -18,5 +18,13 @@ export class ResourcesService {
 
   findAll(): ResourceEntity[] {
     return this.resources;
+  }
+
+  findOneById(id: number): ResourceEntity {
+    const resource = this.resources.find((r) => r.id === id);
+    if (!resource) {
+      throw new NotFoundException(`Resource with id=${id} not found`);
+    }
+    return resource;
   }
 }
