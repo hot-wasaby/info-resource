@@ -43,4 +43,28 @@ export class ResourcesService {
       return ok;
     });
   }
+
+  create(resource: ResourceEntity): ResourceEntity {
+    const newId = this.resources.length > 0 ? Math.max(...this.resources.map(r => r.id)) + 1 : 1;
+    const newResource = { ...resource, id: newId };
+    this.resources.push(newResource);
+    return newResource;
+  }
+
+  update(id: number, updated: Partial<ResourceEntity>): ResourceEntity {
+    const index = this.resources.findIndex(r => r.id === id);
+    if (index === -1) {
+      throw new NotFoundException(`Resource with id=${id} not found`);
+    }
+    this.resources[index] = { ...this.resources[index], ...updated };
+    return this.resources[index];
+  }
+
+  delete(id: number): void {
+    const index = this.resources.findIndex(r => r.id === id);
+    if (index === -1) {
+      throw new NotFoundException(`Resource with id=${id} not found`);
+    }
+    this.resources.splice(index, 1);
+  }
 }
