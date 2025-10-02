@@ -1,6 +1,8 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query, UsePipes } from '@nestjs/common';
 import { ResourcesService } from './resources.service';
 import { ResourceEntity } from '../../entities/resource.entity';
+import { UppercasePipe } from '../../common/pipes/uppercase.pipe';
+import { UppercaseResponsePipe } from '../../common/pipes/uppercase-response.pipe';
 
 @Controller('resources')
 export class ResourcesController {
@@ -14,6 +16,12 @@ export class ResourcesController {
   @Get('details/:id')
   getResourceById(@Param('id') id: string): ResourceEntity {
     return this.resourcesService.findOneById(Number(id));
+  }
+
+  @Get('search-by-name')
+  @UsePipes(UppercaseResponsePipe)
+  searchByName(@Query('name', UppercasePipe) name: string) {
+    return this.resourcesService.searchByName(name);
   }
 
   @Get('search')

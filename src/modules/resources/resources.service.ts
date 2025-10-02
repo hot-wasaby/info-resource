@@ -44,6 +44,17 @@ export class ResourcesService {
     });
   }
 
+  searchByName(name: string) {
+    return this.resources
+      .filter((resource) =>
+        resource.name.toUpperCase().includes(name),
+      )
+      .map((resource) => ({
+        ...resource,
+        name: resource.name.toUpperCase(), // aici modificăm output-ul
+      }));
+  }
+  
   create(resource: ResourceEntity): ResourceEntity {
     const newId = this.resources.length > 0 ? Math.max(...this.resources.map(r => r.id)) + 1 : 1;
     const newResource = { ...resource, id: newId };
