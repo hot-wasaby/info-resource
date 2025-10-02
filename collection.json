@@ -13,21 +13,69 @@
           "name": "GET /resources/list",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://localhost:3000/resources/list", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["resources","list"] }
+            "url": {
+              "raw": "http://localhost:3000/resources/list",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "resources",
+                "list"
+              ]
+            }
           }
         },
         {
           "name": "GET /resources/details/:id",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://localhost:3000/resources/details/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["resources","details","1"] }
+            "url": {
+              "raw": "http://localhost:3000/resources/details/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "resources",
+                "details",
+                "1"
+              ]
+            }
           }
         },
         {
           "name": "GET /resources/search",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://localhost:3000/resources/search?name=solar&minPrice=100&maxPrice=1000", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["resources","search"], "query": [{"key":"name","value":"solar"},{"key":"minPrice","value":"100"},{"key":"maxPrice","value":"1000"}] }
+            "url": {
+              "raw": "http://localhost:3000/resources/search?name=solar&minPrice=100&maxPrice=1000",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "resources",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "solar"
+                },
+                {
+                  "key": "minPrice",
+                  "value": "100"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "1000"
+                }
+              ]
+            }
           }
         }
       ]
@@ -39,7 +87,18 @@
           "name": "GET /users/list",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://localhost:3000/users/list", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["users","list"] }
+            "url": {
+              "raw": "http://localhost:3000/users/list",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "users",
+                "list"
+              ]
+            }
           }
         }
       ]
@@ -51,26 +110,85 @@
           "name": "POST /admin/resources/create",
           "request": {
             "method": "POST",
-            "header": [{"key":"x-role","value":"Admin"}],
-            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Noua resursa\",\n  \"description\": \"Test\",\n  \"category\": \"Test\",\n  \"price\": 123\n}" },
-            "url": { "raw": "http://localhost:3000/admin/resources/create", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["admin","resources","create"] }
+            "header": [
+              {
+                "key": "x-role",
+                "value": "Admin"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Noua resursa\",\n  \"description\": \"Test\",\n  \"category\": \"Test\",\n  \"price\": 123\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/admin/resources/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "admin",
+                "resources",
+                "create"
+              ]
+            }
           }
         },
         {
           "name": "PUT /admin/resources/update/:id",
           "request": {
             "method": "PUT",
-            "header": [{"key":"x-role","value":"Admin"}],
-            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Updated Name\"\n}" },
-            "url": { "raw": "http://localhost:3000/admin/resources/update/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["admin","resources","update","1"] }
+            "header": [
+              {
+                "key": "x-role",
+                "value": "Admin"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Name\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/admin/resources/update/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "admin",
+                "resources",
+                "update",
+                "1"
+              ]
+            }
           }
         },
         {
           "name": "DELETE /admin/resources/delete/:id",
           "request": {
             "method": "DELETE",
-            "header": [{"key":"x-role","value":"Admin"}],
-            "url": { "raw": "http://localhost:3000/admin/resources/delete/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["admin","resources","delete","1"] }
+            "header": [
+              {
+                "key": "x-role",
+                "value": "Admin"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/admin/resources/delete/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "admin",
+                "resources",
+                "delete",
+                "1"
+              ]
+            }
           }
         }
       ]
@@ -82,8 +200,24 @@
           "name": "GET /admin/dashboard",
           "request": {
             "method": "GET",
-            "header": [{"key":"x-role","value":"Admin"}],
-            "url": { "raw": "http://localhost:3000/admin/dashboard", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["admin","dashboard"] }
+            "header": [
+              {
+                "key": "x-role",
+                "value": "Admin"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/admin/dashboard",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "admin",
+                "dashboard"
+              ]
+            }
           }
         }
       ]
