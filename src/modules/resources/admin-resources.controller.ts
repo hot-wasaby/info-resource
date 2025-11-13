@@ -1,4 +1,6 @@
 import { Body, Controller, Delete, Param, Post, Put } from '@nestjs/common';
+import { CreateResourceDto } from '../../dto/create-resource.dto';
+import { UpdateResourceDto } from '../../dto/update-resource.dto';
 import { ResourcesService } from './resources.service';
 import { ResourceEntity } from '../../entities/resource.entity';
 
@@ -7,14 +9,14 @@ export class AdminResourcesController {
   constructor(private readonly resourcesService: ResourcesService) {}
 
   @Post('create')
-  createResource(@Body() resource: ResourceEntity): ResourceEntity {
+  createResource(@Body() resource: CreateResourceDto): ResourceEntity {
     return this.resourcesService.create(resource);
   }
 
   @Put('update/:id')
   updateResource(
     @Param('id') id: string,
-    @Body() updated: Partial<ResourceEntity>,
+    @Body() updated: UpdateResourceDto,
   ): ResourceEntity {
     return this.resourcesService.update(Number(id), updated);
   }

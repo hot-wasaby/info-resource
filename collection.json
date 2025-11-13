@@ -1,226 +1,133 @@
 {
   "info": {
-    "name": "Eco Info Resources",
-    "_postman_id": "1234-eco-resources",
-    "description": "Colecție pentru testarea API-ului proiectului NestJS",
+    "_postman_id": "nestjs-dto-validation-full",
+    "name": "NestJS DTO + Validation - Full API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Public - Resources",
-      "item": [
-        {
-          "name": "GET /resources/list",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "http://localhost:3000/resources/list",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "resources",
-                "list"
-              ]
-            }
-          }
-        },
-        {
-          "name": "GET /resources/details/:id",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "http://localhost:3000/resources/details/1",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "resources",
-                "details",
-                "1"
-              ]
-            }
-          }
-        },
-        {
-          "name": "GET /resources/search",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "http://localhost:3000/resources/search?name=solar&minPrice=100&maxPrice=1000",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "resources",
-                "search"
-              ],
-              "query": [
-                {
-                  "key": "name",
-                  "value": "solar"
-                },
-                {
-                  "key": "minPrice",
-                  "value": "100"
-                },
-                {
-                  "key": "maxPrice",
-                  "value": "1000"
-                }
-              ]
-            }
-          }
-        }
-      ]
+      "name": "GET - List Resources",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/resources/list"
+      }
     },
     {
-      "name": "Users",
-      "item": [
-        {
-          "name": "GET /users/list",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "http://localhost:3000/users/list",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "users",
-                "list"
-              ]
-            }
-          }
-        }
-      ]
+      "name": "GET - Resource Details (valid)",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/resources/details/1"
+      }
     },
     {
-      "name": "Admin - Resources",
-      "item": [
-        {
-          "name": "POST /admin/resources/create",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "x-role",
-                "value": "Admin"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"Noua resursa\",\n  \"description\": \"Test\",\n  \"category\": \"Test\",\n  \"price\": 123\n}"
-            },
-            "url": {
-              "raw": "http://localhost:3000/admin/resources/create",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "admin",
-                "resources",
-                "create"
-              ]
-            }
-          }
-        },
-        {
-          "name": "PUT /admin/resources/update/:id",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "x-role",
-                "value": "Admin"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"Updated Name\"\n}"
-            },
-            "url": {
-              "raw": "http://localhost:3000/admin/resources/update/1",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "admin",
-                "resources",
-                "update",
-                "1"
-              ]
-            }
-          }
-        },
-        {
-          "name": "DELETE /admin/resources/delete/:id",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "x-role",
-                "value": "Admin"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/admin/resources/delete/1",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "admin",
-                "resources",
-                "delete",
-                "1"
-              ]
-            }
-          }
-        }
-      ]
+      "name": "GET - Resource Details (invalid id)",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/resources/details/abc"
+      }
     },
     {
-      "name": "Admin - Dashboard",
-      "item": [
-        {
-          "name": "GET /admin/dashboard",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "x-role",
-                "value": "Admin"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/admin/dashboard",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "admin",
-                "dashboard"
-              ]
-            }
+      "name": "GET - Search Resources (valid query)",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/resources/search?minPrice=100&maxPrice=600"
+      }
+    },
+    {
+      "name": "GET - Search Resources (invalid query)",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/resources/search?minPrice=abc"
+      }
+    },
+    {
+      "name": "POST - Create Resource (valid DTO)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-role",
+            "value": "Admin"
           }
-        }
-      ]
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Solar Panel Kit\",\n  \"description\": \"Complete home solar energy system\",\n  \"category\": \"Energie\",\n  \"price\": 450,\n  \"referenceUrl\": \"https://example.com/solar\"\n}"
+        },
+        "url": "http://localhost:3000/admin/resources/create"
+      }
+    },
+    {
+      "name": "POST - Create Resource (invalid DTO)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-role",
+            "value": "Admin"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"So\",\n  \"description\": \"short\",\n  \"category\": \"Unknown\",\n  \"price\": -10\n}"
+        },
+        "url": "http://localhost:3000/admin/resources/create"
+      }
+    },
+    {
+      "name": "PUT - Update Resource (conditional)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-role",
+            "value": "Admin"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"price\": 600\n}"
+        },
+        "url": "http://localhost:3000/admin/resources/update/1"
+      }
+    },
+    {
+      "name": "DELETE - Delete Resource (valid)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-role",
+            "value": "Admin"
+          }
+        ],
+        "url": "http://localhost:3000/admin/resources/delete/1"
+      }
+    },
+    {
+      "name": "DELETE - Delete Resource (invalid id)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-role",
+            "value": "Admin"
+          }
+        ],
+        "url": "http://localhost:3000/admin/resources/delete/abc"
+      }
     }
   ]
 }

@@ -3,6 +3,8 @@ import { ResourcesService } from './resources.service';
 import { ResourceEntity } from '../../entities/resource.entity';
 import { UppercasePipe } from '../../common/pipes/uppercase.pipe';
 import { UppercaseResponsePipe } from '../../common/pipes/uppercase-response.pipe';
+import { IdParamDto } from '../../dto/id-param.dto';
+import { SearchQueryDto } from '../../dto/search-query.dto';
 
 @Controller('resources')
 export class ResourcesController {
@@ -14,8 +16,8 @@ export class ResourcesController {
   }
 
   @Get('details/:id')
-  getResourceById(@Param('id') id: string): ResourceEntity {
-    return this.resourcesService.findOneById(Number(id));
+  getResourceById(@Param() params: IdParamDto): ResourceEntity {
+    return this.resourcesService.findOneById(Number(params.id));
   }
 
   @Get('search-by-name')
@@ -25,15 +27,11 @@ export class ResourcesController {
   }
 
   @Get('search')
-  searchResources(
-    @Query('name') name?: string,
-    @Query('minPrice') minPrice?: string,
-    @Query('maxPrice') maxPrice?: string,
-  ): ResourceEntity[] {
+  searchResources(@Query() query: SearchQueryDto): ResourceEntity[] {
     return this.resourcesService.search(
-      name,
-      minPrice ? Number(minPrice) : undefined,
-      maxPrice ? Number(maxPrice) : undefined,
+      query.name,
+      query.minPrice ? Number(query.minPrice) : undefined,
+      query.maxPrice ? Number(query.maxPrice) : undefined,
     );
   }
 }
