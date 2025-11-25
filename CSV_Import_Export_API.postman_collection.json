@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "csv-import-export-api",
+		"name": "CSV Import/Export API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Resources",
+			"item": [
+				{
+					"name": "List All Resources",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/resources/list",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"resources",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Resources",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/resources/search?name=solar&minPrice=400",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"resources",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "solar"
+								},
+								{
+									"key": "minPrice",
+									"value": "400"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import CSV",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/test/sample-valid.csv"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/resources/import",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"resources",
+								"import"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import Invalid CSV",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/test/sample-invalid.csv"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/resources/import",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"resources",
+								"import"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Export CSV",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/resources/export",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"resources",
+								"export"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Export CSV with Filters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/resources/export?name=solar&minPrice=400",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"resources",
+								"export"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "solar"
+								},
+								{
+									"key": "minPrice",
+									"value": "400"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Resources",
+			"item": [
+				{
+					"name": "Create Resource",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-role",
+								"value": "Admin",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"New Resource\",\n  \"description\": \"A detailed description of the new resource\",\n  \"category\": \"Energie\",\n  \"price\": 500\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/resources/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"resources",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Resource",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-role",
+								"value": "Admin",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"price\": 600\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/resources/update/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"resources",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Resource",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-role",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/resources/delete/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"resources",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/list",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Admin Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-role",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/dashboard",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000"
+		}
+	]
+}

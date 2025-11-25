@@ -1,0 +1,30 @@
+# CSV Import/Export Test Commands
+
+# 1. Valid CSV Import
+curl -X POST http://localhost:3000/resources/import \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@sample-valid.csv" \
+  | jq
+
+# 2. Invalid CSV Import (wrong file type)
+curl -X POST http://localhost:3000/resources/import \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@sample-invalid.txt" \
+  | jq
+
+# 3. Invalid CSV Import (file too large)
+# (You would need a large file for this test)
+
+# 4. CSV Import with validation errors
+curl -X POST http://localhost:3000/resources/import \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@sample-invalid.csv" \
+  | jq
+
+# 5. Export all resources as CSV
+curl -X GET http://localhost:3000/resources/export \
+  -o exported-resources.csv
+
+# 6. Export filtered resources as CSV
+curl -X GET "http://localhost:3000/resources/export?name=solar&minPrice=400" \
+  -o filtered-resources.csv
